@@ -1,0 +1,58 @@
+--1
+select p.ProductID,c.CategoryID,c.CategoryName
+from [Products] as p
+inner join [Categories] as c on c.CategoryID=p.CategoryID
+
+--2
+select c.CategoryName
+from [Products] as p
+inner join [Categories] as c on  c.CategoryID=p.CategoryID
+where p.ProductID>100
+
+--3
+select p.ProductName,su.CompanyName
+from [Products] as p
+inner join [Suppliers] as su on su.SupplierID=p.SupplierID
+
+--4
+select p.ProductName,su.CompanyName,su.Country
+from [Products] as p
+inner join [Suppliers] as su on su.SupplierID=p.SupplierID
+where su.Country like 'USA'
+
+--5
+select p.ProductName,su.CompanyName,su.Country
+from [Products] as p
+inner join [Suppliers] as su on su.SupplierID=p.SupplierID
+where su.Country <> 'Germany'
+
+--6
+select supp.CompanyName,supp.HomePage
+from [Suppliers] as supp
+where supp.HomePage like '%'
+
+--7
+select supp.CompanyName,supp.HomePage,product.ProductName
+from [Suppliers] as supp
+inner join [Products] as product on product.SupplierID=supp.SupplierID
+where supp.HomePage like '%' 
+
+--8
+select ShippedDate,OrderID
+from [Orders]
+where OrderID=10408
+
+--9
+select p.ProductName,o.OrderID
+from [Orders] as o
+inner join [Order Details] as od on od.OrderID = o.OrderID
+inner join [Products] as p on p.ProductID = od.ProductID
+where o.OrderID=10408
+
+--10
+select o.OrderID,su.CompanyName
+from [Orders] as o
+inner join [Order Details] as od on od.OrderID = o.OrderID
+inner join [Products] as p on p.ProductID = od.ProductID
+inner join [Suppliers] as su on su.SupplierID = p.SupplierID
+where o.OrderID=10408
